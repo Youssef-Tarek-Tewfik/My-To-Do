@@ -73,11 +73,10 @@ public class NoteActivity extends AppCompatActivity {
 
         titleTextView = findViewById(R.id.noteTitle);
         titleTextView.setText(title);
-        titleTextView.setOnLongClickListener(new View.OnLongClickListener() {
+        titleTextView.setOnClickListener(new View.OnClickListener() {
             @Override
-            public boolean onLongClick(View view) {
-            editTitle();
-            return true;
+            public void onClick(View view) {
+                editTitle();
             }
         });
 
@@ -190,7 +189,7 @@ public class NoteActivity extends AppCompatActivity {
                         String dayString = String.valueOf(dayOfMonth);
                         String monthString = String.valueOf(++monthOfYear);
                         if (dayOfMonth < 10)
-                            dayString = "0" + dayString;
+                            dayString = "0" + dayString; // 01/05/2021
                         if (monthOfYear < 10)
                             monthString = 0 + monthString;
                         String date = dayString + "/" + monthString + "/" + year;

@@ -37,7 +37,7 @@ public class Item extends LinearLayout {
                 final NoteActivity.CallableDatePicker dateSetter, final LinearLayout parent) {
         super(context);
 
-        setLayoutParams(new LinearLayout.LayoutParams(1500, 200));
+        setLayoutParams(new LinearLayout.LayoutParams(1100, 200));
         setGravity(Gravity.CENTER);
 
         this.itemID = itemID;
@@ -64,7 +64,7 @@ public class Item extends LinearLayout {
         editText.setText(content);
         editText.setTextSize(20);
         editText.setGravity(Gravity.CENTER);
-        editText.setMinWidth(600);
+        editText.setMinWidth(400);
         editText.setFilters(new InputFilter[] { new InputFilter.LengthFilter(12) });
         editText.setTextAlignment(TEXT_ALIGNMENT_TEXT_START);
         editText.addTextChangedListener(new TextWatcher() {
@@ -99,7 +99,7 @@ public class Item extends LinearLayout {
         textView = new TextView(getContext());
         textView.setText(reminder);
         textView.setPadding(10, 0, 0, 0);
-        textView.setTextSize(15);
+        textView.setTextSize(13);
         textView.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
