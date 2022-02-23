@@ -1,14 +1,13 @@
-package com.example.myto_do;
+package com.ycdm.myToDo;
 
 import android.annotation.SuppressLint;
-import android.app.AlertDialog;
-import android.app.DatePickerDialog;
 import android.content.Context;
-import android.content.DialogInterface;
+import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.ColorFilter;
+import android.graphics.drawable.Drawable;
 import android.text.Editable;
 import android.text.InputFilter;
-import android.text.InputType;
 import android.text.TextWatcher;
 import android.view.Gravity;
 import android.view.View;
@@ -18,7 +17,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import java.util.Calendar;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 public class Item extends LinearLayout {
 
@@ -36,8 +36,9 @@ public class Item extends LinearLayout {
     public Item(final Context context, final int itemID, final String content, String status, String reminder,
                 final NoteActivity.CallableDatePicker dateSetter, final LinearLayout parent) {
         super(context);
+        int width = parent.getWidth();
 
-        setLayoutParams(new LinearLayout.LayoutParams(1100, 200));
+        setLayoutParams(new LinearLayout.LayoutParams(width, (int)(width * 0.15)));
         setGravity(Gravity.CENTER);
 
         this.itemID = itemID;
@@ -50,8 +51,8 @@ public class Item extends LinearLayout {
         imageButton.setImageResource(android.R.drawable.presence_busy);
         imageButton.setBackgroundColor(Color.TRANSPARENT);
         imageButton.setScaleType(ImageView.ScaleType.CENTER_CROP);
-        imageButton.setLayoutParams(new LayoutParams(90, 90));
-        imageButton.setPadding(0, 0, 16, 0);
+        imageButton.setLayoutParams(new LayoutParams((int)(width * 0.06), (int)(width * 0.05)));
+        imageButton.setPadding(0, 0, (int)(width * 0.01), 0);
         imageButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -60,12 +61,14 @@ public class Item extends LinearLayout {
         });
         addView(imageButton);
 
+        int editTextFontSize = Math.max((int)(width * 0.017), 18);
         editText = new EditText(getContext());
         editText.setText(content);
-        editText.setTextSize(20);
+        editText.setTextSize(editTextFontSize);
         editText.setGravity(Gravity.CENTER);
-        editText.setMinWidth(400);
-        editText.setFilters(new InputFilter[] { new InputFilter.LengthFilter(12) });
+        editText.setMinWidth((int)(width * 0.5));
+        editText.setMaxWidth((int)(width * 0.5));
+        //editText.setFilters(new InputFilter[] { new InputFilter.LengthFilter((int)(editTextFontSize * 0.5)) }); // max chars
         editText.setTextAlignment(TEXT_ALIGNMENT_TEXT_START);
         editText.addTextChangedListener(new TextWatcher() {
             @Override
@@ -86,8 +89,8 @@ public class Item extends LinearLayout {
         else
             imageView.setImageResource(android.R.drawable.checkbox_on_background);
         imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
-        imageView.setLayoutParams(new LayoutParams(220, 180));
-        imageView.setPadding(50, 0, 0, 0);
+        imageView.setLayoutParams(new LayoutParams((int)(width * 0.13), (int)(width * 0.12)));
+        imageView.setPadding((int)(width * 0.01), 0, 0, 0);
         imageView.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -98,8 +101,8 @@ public class Item extends LinearLayout {
 
         textView = new TextView(getContext());
         textView.setText(reminder);
-        textView.setPadding(10, 0, 0, 0);
-        textView.setTextSize(13);
+        textView.setPadding((int)(width * 0.01), 0, 0, 0);
+        textView.setTextSize((int)(editTextFontSize * 0.7));
         textView.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -143,6 +146,6 @@ public class Item extends LinearLayout {
 
     private void selfDestruct(LinearLayout parent) {
         parent.removeView(this);
-        database.deleteItem(itemID); // Order?
+        database.deleteItem(itemID);
     }
 }

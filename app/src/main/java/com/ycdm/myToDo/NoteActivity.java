@@ -1,4 +1,4 @@
-package com.example.myto_do;
+package com.ycdm.myToDo;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -9,7 +9,6 @@ import android.content.DialogInterface;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -48,6 +47,7 @@ public class NoteActivity extends AppCompatActivity {
     private int noteID;
     private CallableDatePicker picker;
     private NotesDatabase database;
+    private FloatingActionButton addButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,7 +63,12 @@ public class NoteActivity extends AppCompatActivity {
             Cursor cursor = database.getNote(noteID);
             title = cursor.getString(1);
             password = cursor.getString(2);
-            initializeItems();
+            itemLayout.post(new Runnable() { // So that getWidth() is not 0 for items because this runs after layout is drawn
+                @Override
+                public void run() {
+                    initializeItems();
+                }
+            });
         }
         else {
             title = "New Note";
@@ -80,7 +85,7 @@ public class NoteActivity extends AppCompatActivity {
             }
         });
 
-        FloatingActionButton addButton = findViewById(R.id.addButton);
+        addButton = findViewById(R.id.addButton);
         addButton.setOnClickListener(new View.OnClickListener() {
             @SuppressLint("NewApi")
             @Override
@@ -105,6 +110,8 @@ public class NoteActivity extends AppCompatActivity {
             }
         });
     }
+
+
 
     private void addNewItem() {
         String content = "New Item";

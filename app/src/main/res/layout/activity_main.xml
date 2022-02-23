@@ -35,10 +35,10 @@
         android:id="@+id/scrollView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:paddingLeft="30sp"
-        android:paddingTop="70sp"
-        android:paddingRight="10sp"
-        android:paddingBottom="20sp">
+        android:paddingLeft="30dp"
+        android:paddingTop="30dp"
+        android:paddingRight="10dp"
+        android:paddingBottom="20dp">
 
         <LinearLayout
             android:id="@+id/scrollViewLayout"

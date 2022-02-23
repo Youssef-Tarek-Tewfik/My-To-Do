@@ -18,7 +18,8 @@
         app:layout_constraintBottom_toTopOf="@+id/noteTitle"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0">
 
         <ImageButton
             android:id="@+id/lockButton"
@@ -30,20 +31,26 @@
             android:scaleType="centerCrop"
             app:srcCompat="@android:drawable/ic_lock_idle_lock" />
 
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
         <ImageButton
             android:id="@+id/deleteButton"
             android:layout_width="59dp"
             android:layout_height="match_parent"
-            android:layout_marginLeft="275dp"
             android:layout_marginTop="2dp"
             android:background="@android:color/transparent"
             android:scaleType="centerCrop"
             app:srcCompat="@android:drawable/ic_menu_delete" />
+
+
     </LinearLayout>
 
     <ScrollView
         android:id="@+id/scrollView2"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginTop="25dp"
         app:layout_constraintBottom_toTopOf="@+id/addButton"
@@ -63,7 +70,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:layout_marginBottom="40dp"
+        android:layout_marginBottom="10dp"
         android:gravity="center"
         android:textAllCaps="false"
         android:textSize="42sp"
@@ -78,9 +85,9 @@
         android:id="@+id/addButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginBottom="20dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="5dp"
         android:clickable="true"
         app:backgroundTint="@android:color/background_light"
         app:fabCustomSize="90dp"

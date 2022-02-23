@@ -1,4 +1,4 @@
-package com.example.myto_do;
+package com.ycdm.myToDo;
 
 import android.content.ContentValues;
 import android.content.Context;
